@@ -1,6 +1,8 @@
 package hu.syntrixsmp.syntrixitems.managers;
 
 import hu.syntrixsmp.syntrixitems.SyntrixItemsPlugin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
@@ -25,58 +27,57 @@ public class ScoreboardManager {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 updateScoreboard(player);
             }
-        }, 20L, 20L); // másodpercenként frissül
+        }, 20L, 20L);
     }
 
     public void updateScoreboard(Player player) {
         BoosterManager boosterManager = plugin.getBoosterManager();
 
-        Scoreboard scoreboard = scoreboards.computeIfAbsent(player.getUniqueId(), uuid -> {
-            Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
-            return sb;
-        });
+        Scoreboard scoreboard = scoreboards.computeIfAbsent(
+            player.getUniqueId(), uuid -> Bukkit.getScoreboardManager().getNewScoreboard()
+        );
 
         Objective objective = scoreboard.getObjective("syntrix");
         if (objective == null) {
-            objective = scoreboard.registerNewObjective("syntrix", Criteria.DUMMY,
-                    c("&b&lSyntrixSMP"));
+            objective = scoreboard.registerNewObjective("syntrix", Criteria.DUMMY, c("&b&lSyntrixSMP"));
             objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         } else {
             objective.displayName(c("&b&lSyntrixSMP"));
         }
 
-        // Töröljük a régi sorokat
+        // Régi sorok törlése
         for (String entry : scoreboard.getEntries()) {
             scoreboard.resetScores(entry);
         }
 
         int line = 10;
 
-        // Üres sor
         setLine(scoreboard, objective, " ", line--);
 
-        // Booster sor — csak ha aktív
         if (boosterManager.hasActiveBooster(player)) {
             int pps = plugin.getConfig().getInt("shard-booster.points-per-second", 4);
-            setLine(scoreboard, objective, c("&b⚡ Booster: &f" + pps + "/mp"), line--);
-            setLine(scoreboard, objective, c("&7Hátralévő: &e" + boosterManager.getFormattedRemaining(player)), line--);
+            setLine(scoreboard, objective, s("&b⚡ Booster: &f" + pps + "/mp"), line--);
+            setLine(scoreboard, objective, s("&7Hátralévő: &e" + boosterManager.getFormattedRemaining(player)), line--);
             setLine(scoreboard, objective, "  ", line--);
         }
 
-        // Üres sor alul
         setLine(scoreboard, objective, "   ", line--);
-        setLine(scoreboard, objective, c("&7syntrixsmp.hu"), line--);
+        setLine(scoreboard, objective, s("&7syntrixsmp.hu"), line--);
 
         player.setScoreboard(scoreboard);
     }
 
     private void setLine(Scoreboard scoreboard, Objective objective, String text, int score) {
-        Score s = objective.getScore(text);
-        s.setScore(score);
+        objective.getScore(text).setScore(score);
     }
 
-    // Adventure Component helyett sima legacy String — scoreboard csak Stringet fogad el
-    private String c(String text) {
+    // Component — objective displayName-hez
+    private Component c(String text) {
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(text);
+    }
+
+    // String — scoreboard entry-khez (§ kód)
+    private String s(String text) {
         return text.replace("&", "§");
     }
 

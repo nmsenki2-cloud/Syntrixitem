@@ -39,5 +39,5 @@ items:
   shard-booster:
     name: "&b&lShard Booster &7(4x)"
     lore:
-      - "&724 óráig &b4 Shard&7/mp"
+      - "&724 óráig &b4 Shard&7/perc"
       - "&5&lSyntrixSMP"

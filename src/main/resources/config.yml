@@ -18,7 +18,7 @@ sell-prices:
 
 shard-booster:
   duration-seconds: 86400
-  points-per-second: 4
+  points-per-minute: 240
 
 items:
   amethyst-pickaxe:

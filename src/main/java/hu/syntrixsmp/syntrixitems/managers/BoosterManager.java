@@ -28,7 +28,7 @@ public class BoosterManager {
     }
 
     private void startBoosterTask() {
-        int pointsPerMinute = plugin.getConfig().getInt("shard-booster.points-per-minute", 240);
+        int pointsPerMinute = plugin.getConfig().getInt("shard-booster.points-per-minute", 4);
         boosterTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             long now = System.currentTimeMillis();
             boosterExpiry.entrySet().removeIf(entry -> {

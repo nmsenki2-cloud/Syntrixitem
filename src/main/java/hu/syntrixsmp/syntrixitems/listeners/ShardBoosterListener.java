@@ -43,13 +43,13 @@ public class ShardBoosterListener implements Listener {
         else player.getInventory().setItemInMainHand(null);
 
         int hours = plugin.getConfig().getInt("shard-booster.duration-seconds", 86400) / 3600;
-        int pps = plugin.getConfig().getInt("shard-booster.points-per-second", 4);
+        int ppm = plugin.getConfig().getInt("shard-booster.points-per-minute", 4);
 
-        player.sendMessage(c("&b&l[Booster] &bShard Booster aktiválva! &7" + pps + " Shard/Perc " + hours + " óráig!"));
+        player.sendMessage(c("&b&l[Booster] &bShard Booster aktiválva! &7" + ppm + " Shard/perc " + hours + " óráig!"));
 
         player.showTitle(net.kyori.adventure.title.Title.title(
             c("&b&lShard Booster"),
-            c("&7" + pps + " Shard/Perc - " + hours + " óra"),
+            c("&7" + ppm + " Shard/perc - " + hours + " óra"),
             net.kyori.adventure.title.Title.Times.times(
                 java.time.Duration.ofMillis(500),
                 java.time.Duration.ofMillis(3000),

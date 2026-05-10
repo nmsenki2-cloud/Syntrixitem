@@ -62,7 +62,7 @@ public class ItemUtils {
 
     public static ItemStack createSellAxe() {
         SyntrixItemsPlugin plugin = SyntrixItemsPlugin.getInstance();
-        ItemStack item = new ItemStack(Material.stick);
+        ItemStack item = new ItemStack(Material.STICK);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(color(plugin.getConfig().getString("items.sell-axe.name", "&6&lEladó Balta")));
         List<Component> lore = new ArrayList<>();

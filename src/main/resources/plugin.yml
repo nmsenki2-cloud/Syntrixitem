@@ -1,0 +1,17 @@
+name: SyntrixItems
+version: 1.0.0
+main: hu.syntrixsmp.syntrixitems.SyntrixItemsPlugin
+api-version: "1.21"
+authors: [SyntrixSMP]
+depend:
+  - Vault
+  - PlaceholderAPI
+commands:
+  syntrixitem:
+    description: Custom item adása
+    usage: /syntrixitem give <játékos> <item>
+    permission: syntrixitems.admin
+    aliases: [si]
+permissions:
+  syntrixitems.admin:
+    default: op

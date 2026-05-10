@@ -1,0 +1,43 @@
+sell-prices:
+  OAK_LOG: 100
+  SPRUCE_LOG: 100
+  BIRCH_LOG: 100
+  JUNGLE_LOG: 100
+  ACACIA_LOG: 100
+  DARK_OAK_LOG: 100
+  MANGROVE_LOG: 100
+  CHERRY_LOG: 100
+  STONE: 10
+  COBBLESTONE: 8
+  COAL: 50
+  IRON_INGOT: 150
+  GOLD_INGOT: 200
+  DIAMOND: 500
+  EMERALD: 400
+  NETHERITE_INGOT: 1000
+
+shard-booster:
+  duration-seconds: 86400
+  points-per-second: 4
+
+items:
+  amethyst-pickaxe:
+    name: "&5&lAmethyst Csákány"
+    lore:
+      - "&73x3-as területet bont ki egyszerre"
+      - "&5&lSyntrixSMP"
+  amethyst-axe:
+    name: "&5&lAmethyst Balta"
+    lore:
+      - "&7Egyszerre kidönti az egész fát"
+      - "&5&lSyntrixSMP"
+  sell-axe:
+    name: "&6&lEladó Balta"
+    lore:
+      - "&7Jobb klikk ládára az eladáshoz"
+      - "&5&lSyntrixSMP"
+  shard-booster:
+    name: "&b&lShard Booster &7(4x)"
+    lore:
+      - "&724 óráig &b4 Shard&7/mp"
+      - "&5&lSyntrixSMP"

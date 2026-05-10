@@ -25,19 +25,15 @@ items:
     name: "&5&lAmethyst Csákány"
     lore:
       - "&73x3-as területet bont ki egyszerre"
-      - "&5&lSyntrixSMP"
   amethyst-axe:
     name: "&5&lAmethyst Balta"
     lore:
       - "&7Egyszerre kidönti az egész fát"
-      - "&5&lSyntrixSMP"
   sell-axe:
     name: "&6&lEladó Balta"
     lore:
       - "&7Jobb klikk ládára az eladáshoz"
-      - "&5&lSyntrixSMP"
   shard-booster:
     name: "&b&lShard Booster &7(4x)"
     lore:
       - "&724 óráig &b4 Shard&7/perc"
-      - "&5&lSyntrixSMP"

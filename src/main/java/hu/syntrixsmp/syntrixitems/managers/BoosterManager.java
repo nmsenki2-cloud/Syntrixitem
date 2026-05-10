@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class BoosterManager {
     }
 
     private void startBoosterTask() {
-        int pointsPerSecond = plugin.getConfig().getInt("shard-booster.points-per-second", 4);
+        int pointsPerMinute = plugin.getConfig().getInt("shard-booster.points-per-minute", 240);
         boosterTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             long now = System.currentTimeMillis();
             boosterExpiry.entrySet().removeIf(entry -> {
@@ -37,10 +38,10 @@ public class BoosterManager {
                     return true;
                 }
                 Player p = Bukkit.getPlayer(entry.getKey());
-                if (p != null && p.isOnline()) Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "points give " + p.getName() + " " + pointsPerSecond);
+                if (p != null && p.isOnline()) Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "points give " + p.getName() + " " + pointsPerMinute);
                 return false;
             });
-        }, 20L, 20L);
+        }, 1200L, 1200L); // 1200 tick = 1 perc
     }
 
     public boolean hasActiveBooster(Player player) {
